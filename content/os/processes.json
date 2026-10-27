@@ -1,0 +1,6 @@
+{"id":"processes","title":"Processes vs Threads","monster":"queue-quokka",
+"analogy":"A process is Dr. Frankenstein's haunted laboratory with its own castle dungeon and lightning rod. Threads are the stitched minions inside: they share the lab vat and brain jars, but each holds their own scalpel. Two castles never share brain jars!",
+"concept":"A process is a running program with its own memory space. Threads live inside a process and share its memory and resources, but each has its own stack and registers. Threads are cheaper to create and switch between, but sharing memory means they need synchronization to avoid races.",
+"quiz":[
+{"q":"What do threads in the same process share?","options":["Stack","Registers","Heap memory","Program counter"],"answer":2,"why":"All stitched minions share the same central lab vat (heap); each keeps their own scalpel and notes (stack, registers, PC)."},
+{"q":"Why is switching between threads cheaper than between processes?","options":["Threads use no memory","The address space stays the same","Threads skip the scheduler","Threads never block"],"answer":1,"why":"The minions remain in the same laboratory, so no castle walls or address spaces need to be swapped."}]}

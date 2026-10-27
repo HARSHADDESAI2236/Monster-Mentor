@@ -1,0 +1,6 @@
+{"id":"indexing","title":"Indexing","monster":"index-imp",
+"analogy":"Finding a cursed amulet in 10,000 haunted catacombs means prying open every stone coffin without Crypt-Spider Imp. The Imp spins glowing silk threads directly from 'Amulet' to 'Catacomb 13', scuttling straight there! But burying a new mummy means spinning more silk web.",
+"concept":"An index (usually a B-tree) lets the database find rows without scanning the whole table. Reads on indexed columns get much faster, but writes get slower and storage grows because the index must be maintained. Index columns you filter, join, or sort on often.",
+"quiz":[
+{"q":"What is the main cost of adding an index?","options":["Slower reads","Slower writes and extra storage","Lost data","Weaker security"],"answer":1,"why":"Crypt-Spider Imp must spin new glowing silk threads on every change."},
+{"q":"Which column is a good index candidate?","options":["Rarely queried notes","One used often in WHERE and JOIN","A column nobody sorts by","A tiny table's flag"],"answer":1,"why":"Index the spooky crypts you visit often in your queries."}]}

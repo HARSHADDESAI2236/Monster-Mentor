@@ -1,0 +1,6 @@
+{"id":"bias-variance","title":"Bias vs Variance","monster":"overfit-ogre",
+"analogy":"Werewolf archers aiming silver arrows at glowing jack-o'-lantern targets in the midnight fog. High bias: Arrows all clump into the same wrong spooky dead oak. High variance: Howling wildly, arrows scatter all over the dark cemetery. The master archer stays close and consistent.",
+"concept":"Bias is error from overly simple assumptions (underfitting). Variance is error from sensitivity to training data (overfitting). Making a model more complex lowers bias but raises variance, so you look for the sweet spot.",
+"quiz":[
+{"q":"A very simple model that misses the pattern has...","options":["High bias","High variance","Zero error","Low bias"],"answer":0,"why":"Consistently wrong: all silver arrows stuck in the wrong spooky oak tree."},
+{"q":"Increasing model complexity usually...","options":["Raises bias, lowers variance","Lowers bias, raises variance","Changes neither","Lowers both always"],"answer":1,"why":"More flexible means fitting training pumpkins better but wobbling wildly on new data."}]}

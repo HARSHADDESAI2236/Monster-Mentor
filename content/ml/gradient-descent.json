@@ -1,0 +1,6 @@
+{"id":"gradient-descent","title":"Gradient Descent","monster":"gradient-gremlin",
+"analogy":"Bat Gremlin is swooping in a pitch-black spooky canyon searching for Count Dracula's secret crypt at the lowest valley basin. He uses echolocation to sense which way the cliff slopes and glides downward. Big wingbeats overshoot into the abyss; tiny flaps take all night.",
+"concept":"Gradient descent minimizes a loss function by repeatedly moving parameters opposite the gradient: w = w - lr * gradient. The learning rate sets step size. Too high can diverge, too low is slow, and non-convex losses may have local minima.",
+"quiz":[
+{"q":"What does a learning rate that is too large cause?","options":["Slow convergence only","Overshooting or divergence","Zero gradient","Overfitting only"],"answer":1,"why":"Giant Bat Gremlin wingflaps overshoot Dracula's crypt and crash into the ravine walls."},
+{"q":"Which direction does each update move?","options":["Along the gradient","Opposite the gradient","Randomly","Perpendicular"],"answer":1,"why":"Downhill toward the shadowy crypt is the negative gradient direction."}]}

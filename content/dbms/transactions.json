@@ -1,0 +1,6 @@
+{"id":"transactions","title":"Transactions and ACID","monster":"normal-norm",
+"analogy":"Witch Norm casts a Midnight Transmutation Ritual (ACID). Either the enchanted gargoyle fully teleports to Crypt B, or it stays on Crypt A. It never hovers half-dissolved in the midnight fog, and never duplicates on both!",
+"concept":"A transaction groups operations into one unit. ACID: Atomicity (all or nothing), Consistency (rules stay valid), Isolation (concurrent transactions don't see each other's half-done work), Durability (committed data survives crashes).",
+"quiz":[
+{"q":"A cursed potion gold is deducted but never added to the coven vault. Which property failed?","options":["Atomicity","Durability","Indexing","Normalization"],"answer":0,"why":"Atomicity means the spell manifests fully or not at all."},
+{"q":"Durability guarantees...","options":["Fast queries","Committed data survives a crash","No concurrent users","Unique keys"],"answer":1,"why":"Once sealed in blood-red wax, the transaction survives the sunrise."}]}

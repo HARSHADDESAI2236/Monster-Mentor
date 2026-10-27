@@ -1,0 +1,6 @@
+{"id":"overfitting","title":"Overfitting","monster":"overfit-ogre",
+"analogy":"Trick-or-Treat Ogre memorizes every porch step, gargoyle statue, and door color of the 3 houses that gave king-size chocolate bars last Halloween. He scores 100% on that old street, but completely starves on this Halloween because the neighborhood changed and he memorized the bricks instead of the holiday!",
+"concept":"A model overfits when it learns noise in the training data, giving low training error but high error on new data. Remedies: more data, simpler models, regularization, dropout, early stopping, and validating on held-out data.",
+"quiz":[
+{"q":"Which sign suggests overfitting?","options":["High train error, high test error","Low train error, high test error","Low train error, low test error","High train error, low test error"],"answer":1,"why":"100% candy score on the memorized porch, zero candy on any new spooky street."},
+{"q":"Which helps reduce overfitting?","options":["Training longer forever","Regularization","Removing the test set","Using a bigger model only"],"answer":1,"why":"Regularization stops the Ogre from memorizing every cracked doorstep and teaches general trick-or-treating."}]}

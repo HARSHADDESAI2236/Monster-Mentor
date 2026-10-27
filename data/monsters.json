@@ -1,0 +1,9 @@
+{
+  "gridlock-gobbler": { "name": "Jack-o'-Gobbler 🎃", "color": "#ff7518", "shape": "round", "halloween_type": "pumpkin", "trait": "Carved pumpkin fiend who never lets go of his cauldron ladle." },
+  "queue-quokka": { "name": "Franken-Quokka 🧟", "color": "#22c55e", "shape": "tall", "halloween_type": "franken", "trait": "Stitched dungeon creature who keeps the castle lab line moving." },
+  "page-panda": { "name": "Phantom Panda 👻", "color": "#a855f7", "shape": "round", "halloween_type": "ghost", "trait": "Crypt spirit who swaps cursed grimoires on and off his spectral altar." },
+  "normal-norm": { "name": "Witch Norm 🧙", "color": "#10b981", "shape": "tall", "halloween_type": "witch", "trait": "Potion witch who insists on one labeled apothecary jar per bat-wing." },
+  "index-imp": { "name": "Crypt-Spider Imp 🕷️", "color": "#c084fc", "shape": "round", "halloween_type": "spider", "trait": "Spins glowing cobweb threads directly to every tomb in the cemetery." },
+  "overfit-ogre": { "name": "Trick-or-Treat Ogre 🍬", "color": "#f59e0b", "shape": "tall", "halloween_type": "ogre", "trait": "Memorizes last year's candy houses, getting tricked when doors change." },
+  "gradient-gremlin": { "name": "Bat Gremlin 🦇", "color": "#ec4899", "shape": "round", "halloween_type": "bat", "trait": "Echolocating flyer who glides downhill straight to Dracula's lowest crypt." }
+}

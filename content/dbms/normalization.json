@@ -1,0 +1,6 @@
+{"id":"normalization","title":"Normalization","monster":"normal-norm",
+"analogy":"Witch Norm hates messy potion crypts. If powdered bat-wings are tossed into 3 different cauldrons and cupboards, changing the recipe means hunting down every copy. 1NF, 2NF, 3NF: She gives each cursed ingredient exactly one labeled apothecary jar.",
+"concept":"Normalization organizes tables to reduce redundancy and update anomalies. 1NF: atomic values. 2NF: no partial dependency on part of a composite key. 3NF: no non-key column depends on another non-key column. Each step stores every fact in exactly one place.",
+"quiz":[
+{"q":"Which problem does normalization mainly reduce?","options":["Slow networks","Data redundancy and anomalies","Large indexes","Lock contention"],"answer":1,"why":"One labeled jar per bat-wing means only one place to update in the potion room."},
+{"q":"2NF removes which dependency?","options":["Transitive","Partial","Multivalued","Cyclic"],"answer":1,"why":"Partial dependency: an ingredient depending on only part of a composite spell key."}]}

@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Streamlit secrets & config
+.streamlit/secrets.toml
+
+# Environment & IDE
+.env
+.idea/
+.vscode/
+*.swp

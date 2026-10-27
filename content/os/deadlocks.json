@@ -1,0 +1,6 @@
+{"id":"deadlocks","title":"Deadlocks","monster":"gridlock-gobbler",
+"analogy":"Two Jack-o'-Gobblers sit around a bubbling Halloween cauldron, each clutching a bone ladle and waiting for the other's potion bowl. Neither lets go, so neither drinks!",
+"concept":"A deadlock happens when processes wait on each other forever. It requires four conditions at once: mutual exclusion, hold and wait, no preemption, and circular wait. Break any one and deadlock cannot occur, for example by ordering resources so everyone grabs them in the same sequence.",
+"quiz":[
+{"q":"Which condition is needed for deadlock?","options":["Preemption","Circular wait","Spooling","Paging"],"answer":1,"why":"Circular wait means each Jack-o'-Gobbler waits on the next monster's ladle."},
+{"q":"How does acquiring resources in a fixed global order help?","options":["Removes mutual exclusion","Prevents circular wait","Allows preemption","Speeds up the CPU"],"answer":1,"why":"If every monster reaches for the ladle first, then the potion bowl, no cycle can form."}]}

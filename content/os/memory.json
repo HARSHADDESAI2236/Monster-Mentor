@@ -1,0 +1,6 @@
+{"id":"memory","title":"Virtual Memory and Paging","monster":"page-panda",
+"analogy":"Phantom Panda haunts a spooky crypt library. He has a tiny spectral altar (RAM) and infinite dusty catacomb vaults (disk). He keeps only the active cursed scrolls on the altar and summons others when needed. Summoning a missing scroll is a Page Fault!",
+"concept":"Virtual memory gives each process the illusion of a large, private address space. Memory is split into fixed-size pages mapped to physical frames through a page table. When a page isn't in RAM, a page fault loads it from disk, evicting another page if needed. Too many faults cause thrashing.",
+"quiz":[
+{"q":"What triggers a page fault?","options":["Accessing a page not in RAM","Writing to disk","A full CPU cache","A new thread"],"answer":0,"why":"The cursed scroll Panda needs isn't currently floating on his spectral altar."},
+{"q":"What is thrashing?","options":["Fast page lookups","Constant swapping with little real work","Memory encryption","A kind of deadlock"],"answer":1,"why":"Panda spends all night swapping heavy grimoires back and forth and gets no haunting done."}]}
