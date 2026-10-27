@@ -51,13 +51,15 @@ def parse_json(text):
     try:
         return json.loads(text)
     except ValueError:
-        start, end = text.find("{"), text.rfind("}")
-        if start != -1 and end > start:
-            try:
-                return json.loads(text[start:end + 1])
-            except ValueError:
-                pass
-    raise GemmaError("Model did not return valid JSON")
+        for open_c, close_c in [("{", "}"), ("[", "]")]:
+            start = text.find(open_c)
+            end = text.rfind(close_c)
+            if start != -1 and end > start:
+                try:
+                    return json.loads(text[start:end + 1])
+                except ValueError:
+                    pass
+    raise GemmaError("Model did not return valid JSON. Please try again.")
 
 
 class GemmaClient:
@@ -89,41 +91,59 @@ class GemmaClient:
         client, types = self._sdk()
         cfg = types.GenerateContentConfig(system_instruction=system) if system else None
         
-        # Try primary model, retry with backoff on 503 temporary overload
-        max_attempts = 3
-        for attempt in range(max_attempts):
-            try:
-                resp = client.models.generate_content(
-                    model=self.model,
-                    contents=self._contents(messages, types),
-                    config=cfg,
-                )
-                return resp.text or ""
-            except Exception as e:
-                err_low = str(e).lower()
-                if ("503" in err_low or "unavailable" in err_low or "high demand" in err_low) and attempt < max_attempts - 1:
-                    time.sleep(1.5 * (attempt + 1))
-                    continue
-                raise
+        # Try primary model first; if 503 overloaded, fallback to alternate models
+        models_to_try = [self.model]
+        for m in MODELS:
+            if m not in models_to_try:
+                models_to_try.append(m)
+        
+        last_e = None
+        for current_model in models_to_try:
+            for attempt in range(2):
+                try:
+                    resp = client.models.generate_content(
+                        model=current_model,
+                        contents=self._contents(messages, types),
+                        config=cfg,
+                    )
+                    return resp.text or ""
+                except Exception as e:
+                    last_e = e
+                    err_low = str(e).lower()
+                    if "503" in err_low or "unavailable" in err_low or "high demand" in err_low:
+                        time.sleep(1.0)
+                        continue
+                    raise
+        if last_e:
+            raise last_e
 
     def _stream(self, messages, system=None):
         client, types = self._sdk()
         cfg = types.GenerateContentConfig(system_instruction=system) if system else None
         
-        max_attempts = 3
-        for attempt in range(max_attempts):
-            try:
-                for chunk in client.models.generate_content_stream(
-                        model=self.model, contents=self._contents(messages, types), config=cfg):
-                    if chunk.text:
-                        yield chunk.text
-                return
-            except Exception as e:
-                err_low = str(e).lower()
-                if ("503" in err_low or "unavailable" in err_low or "high demand" in err_low) and attempt < max_attempts - 1:
-                    time.sleep(1.5 * (attempt + 1))
-                    continue
-                raise
+        models_to_try = [self.model]
+        for m in MODELS:
+            if m not in models_to_try:
+                models_to_try.append(m)
+        
+        last_e = None
+        for current_model in models_to_try:
+            for attempt in range(2):
+                try:
+                    for chunk in client.models.generate_content_stream(
+                            model=current_model, contents=self._contents(messages, types), config=cfg):
+                        if chunk.text:
+                            yield chunk.text
+                    return
+                except Exception as e:
+                    last_e = e
+                    err_low = str(e).lower()
+                    if "503" in err_low or "unavailable" in err_low or "high demand" in err_low:
+                        time.sleep(1.0)
+                        continue
+                    raise
+        if last_e:
+            raise last_e
 
     # ---- chat ----
     def chat(self, messages, system=None):
@@ -148,15 +168,23 @@ class GemmaClient:
         last = None
         for attempt in range(retries + 1):
             try:
-                return parse_json(self.chat([{"role": "user", "content": prompt}]))
+                raw = self.chat([{"role": "user", "content": prompt}])
+                return parse_json(raw)
             except GemmaError as e:
                 last = e
                 err_str = str(e)
                 if "Rate limit" in err_str or "API key" in err_str:
                     break  # retrying won't help
-                if "high demand" in err_str and attempt < retries:
-                    time.sleep(1.5)
-        raise last
+                if attempt < retries:
+                    time.sleep(1.2 * (attempt + 1))
+            except Exception as e:
+                last = GemmaError(friendly_error(e))
+                if attempt < retries:
+                    time.sleep(1.2 * (attempt + 1))
+        
+        if last is not None:
+            raise last
+        raise GemmaError("Failed to generate response after retries. Please try again.")
 
     def generate_quiz(self, lesson, n=3):
         data = self._json_call(prompts.quiz_prompt(lesson, n))
